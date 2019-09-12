@@ -10,14 +10,18 @@ class SearchBar extends React.Component {
 
   onFormSubmit = e => {
     e.preventDefault();
-    this.setState({ searchText: '' });
+    const term = this.state.searchText.trim();
 
-    console.log(this.state.searchText);
+    if (term) {
+      this.props.onSubmit(term);
+    }
+
+    this.setState({ searchText: '' });
   };
 
   render() {
     return (
-      <div>
+      <div className="search-bar">
         <form onSubmit={this.onFormSubmit}>
           <label className="search-bar__label" htmlFor="search">
             Search
