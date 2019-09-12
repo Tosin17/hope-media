@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImagesService } from './services/car-images';
 import Search from './search-bar/search-bar';
-import CarsList from './cars-list/cars-list';
+import CarImagesList from './car-images-list/car-images-list';
 
 class App extends React.Component {
   constructor() {
@@ -20,7 +20,7 @@ class App extends React.Component {
       <div>
         <h1>App</h1>
         <Search onSubmit={this.onSearchSubmit} />
-        <CarsList carImages={this.state.images} />
+        <CarImagesList carImages={this.state.images} />
       </div>
     );
   }

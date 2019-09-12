@@ -11,9 +11,9 @@ class CarImagesService {
     const URL = `${this.BASEURL}${image}&image_type=photo`;
     return ajax(URL).pipe(
       map(({ response }) =>
-        response.hits.map(({ id, largeImageURL, tags }) => ({
+        response.hits.map(({ id, webformatURL: url, tags }) => ({
           id,
-          largeImageURL,
+          url,
           tags
         }))
       )
