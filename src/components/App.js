@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImagesService } from './services/car-images';
+import { ImagesService } from './services/car-images-service';
 import Search from './search-bar/search-bar';
 import CarImagesList from './car-images-list/car-images-list';
 
