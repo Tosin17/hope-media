@@ -5,11 +5,19 @@ import CarImagesList from './car-images-list/car-images-list';
 import TodoInputBox from './todo-input-box/todo-input-box';
 import TodoList from './todo-list/todo-list';
 import { TodoItem } from './models/todo-item.model';
+import Tabs from './tabs/tabs';
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { images: [], todos: [] };
+    this.state = {
+      images: [],
+      todos: [],
+      tabChildren: []
+    };
+
+    this.searchAppRef = React.createRef();
+    this.todoAppRef = React.createRef();
   }
 
   onSearchSubmit = term => {
@@ -32,15 +40,35 @@ class App extends React.Component {
     this.setState({ todos: [..._todos] });
   };
 
+  tabClicked = ({ ref }) => {
+    const _tabChildren = [...this.state.tabChildren];
+    _tabChildren.forEach(({ ref }) => ref.current.style);
+    ref.current.style.display = 'block';
+  };
+
+  componentDidMount() {
+    // Setup tabs config.
+    const _tabChildren = [
+      { ref: this.searchAppRef, order: 1, name: 'Search App' },
+      { ref: this.todoAppRef, order: 2, name: 'Todo App' }
+    ];
+
+    this.setState({ tabChildren: [..._tabChildren] });
+  }
+
   render() {
     return (
       <div>
         <h1>Apps</h1>
-        <div className="search-app" style={{ display: 'none' }}>
+        <Tabs
+          children={this.state.tabChildren}
+          onTabClicked={this.tabClicked}
+        />
+        <div className="search-app" ref={this.searchAppRef}>
           <Search onSubmit={this.onSearchSubmit} />
           <CarImagesList carImages={this.state.images} />
         </div>
-        <div className="todo-app">
+        <div className="todo-app" ref={this.todoAppRef}>
           <TodoInputBox onAddTodo={this.addTodo} />
           <TodoList list={this.state.todos} onTodoClicked={this.toDoClicked} />
         </div>
