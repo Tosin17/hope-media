@@ -12,7 +12,6 @@ class CarImage extends React.Component {
   getImageHieight = () => {
     const imageHeight = this.imageRef.current.clientHeight;
     this.setState({ imageHeight });
-    console.log(imageHeight);
   };
 
   componentDidMount() {

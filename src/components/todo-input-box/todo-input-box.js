@@ -1,4 +1,5 @@
 import React from 'react';
+import './todo-input-box.scss';
 
 class TodoInputBox extends React.Component {
   constructor(props) {
