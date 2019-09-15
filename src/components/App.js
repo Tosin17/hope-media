@@ -40,18 +40,17 @@ class App extends React.Component {
     this.setState({ todos: [..._todos] });
   };
 
-  tabClicked = ({ ref }) => {
-    const _tabChildren = [...this.state.tabChildren];
-    _tabChildren.forEach(({ ref }) => ref.current.style);
-    ref.current.style.display = 'block';
-  };
-
   componentDidMount() {
     // Setup tabs config.
     const _tabChildren = [
       { ref: this.searchAppRef, order: 1, name: 'Search App' },
       { ref: this.todoAppRef, order: 2, name: 'Todo App' }
     ];
+
+    //Initialize tab
+    _tabChildren.forEach(child => {
+      child.ref.current.style.display = child.order === 1 ? 'block' : 'none';
+    });
 
     this.setState({ tabChildren: [..._tabChildren] });
   }
@@ -60,10 +59,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Apps</h1>
-        <Tabs
-          children={this.state.tabChildren}
-          onTabClicked={this.tabClicked}
-        />
+        <Tabs children={this.state.tabChildren} />
         <div className="search-app" ref={this.searchAppRef}>
           <Search onSubmit={this.onSearchSubmit} />
           <CarImagesList carImages={this.state.images} />
