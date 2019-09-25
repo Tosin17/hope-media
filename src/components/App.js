@@ -6,6 +6,7 @@ import TodoInputBox from './todo-input-box/todo-input-box';
 import TodoList from './todo-list/todo-list';
 import { TodoItem } from './models/todo-item.model';
 import Tabs from './tabs/tabs';
+import SongList from './song-list/song-list';
 
 class App extends React.Component {
   constructor() {
@@ -18,6 +19,7 @@ class App extends React.Component {
 
     this.searchAppRef = React.createRef();
     this.todoAppRef = React.createRef();
+    this.songListRef = React.createRef();
   }
 
   onSearchSubmit = term => {
@@ -44,7 +46,8 @@ class App extends React.Component {
     // Setup tabs config.
     const _tabChildren = [
       { ref: this.searchAppRef, order: 1, name: 'Search App' },
-      { ref: this.todoAppRef, order: 2, name: 'Todo App' }
+      { ref: this.todoAppRef, order: 2, name: 'Todo App' },
+      { ref: this.songListRef, order: 3, name: 'Song List' }
     ];
 
     //Initialize tab
@@ -67,6 +70,9 @@ class App extends React.Component {
         <div className="todo-app" ref={this.todoAppRef}>
           <TodoInputBox onAddTodo={this.addTodo} />
           <TodoList list={this.state.todos} onTodoClicked={this.toDoClicked} />
+        </div>
+        <div className="song-list" ref={this.songListRef}>
+          <SongList />
         </div>
       </div>
     );
