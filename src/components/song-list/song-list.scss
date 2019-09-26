@@ -1,3 +1,16 @@
 .song-list {
   padding: 1rem 0;
+
+  &__wrapper {
+    display: flex;
+
+    & > * {
+      padding-right: 1rem;
+    }
+
+    ul {
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
 }

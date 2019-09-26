@@ -21,6 +21,7 @@ class Tabs extends React.Component {
         </button>
       );
     });
+
     return <div className="tab">{tabButtons}</div>;
   }
 }

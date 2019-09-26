@@ -7,6 +7,7 @@ import TodoList from './todo-list/todo-list';
 import { TodoItem } from './models/todo-item.model';
 import Tabs from './tabs/tabs';
 import SongList from './song-list/song-list';
+import SongDetail from './song-detail/song-detail';
 
 class App extends React.Component {
   constructor() {
@@ -72,7 +73,10 @@ class App extends React.Component {
           <TodoList list={this.state.todos} onTodoClicked={this.toDoClicked} />
         </div>
         <div className="song-list" ref={this.songListRef}>
-          <SongList />
+          <div className="song-list__wrapper">
+            <SongList />
+            <SongDetail />
+          </div>
         </div>
       </div>
     );

@@ -1,16 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { selectSongAction } from '../actions/actions';
 import './song-list.scss';
 
 class SongList extends React.Component {
   render() {
-    console.log(this.props);
-    return <div className="songs-list">Songs</div>;
+    const list = this.props.songs.map((song, index) => (
+      <li key={index}>
+        {song.title}
+        <button type="button" onClick={() => this.props.selectSong(song)}>
+          Select
+        </button>
+      </li>
+    ));
+    return <ul className="songs-list">{list}</ul>;
   }
 }
 
-const mapStateToProps = state => ({
-  songs: state.songs
-});
+// A function that maps state to props
+const mapStateToProps = state => ({ songs: state.songs });
 
-export default connect(mapStateToProps)(SongList);
+// 1. Connect component and actionCreator to store. NOTE! dispatch(actionCreator) is called underthehood
+// 2. Pass state and actions to component as props
+export default connect(
+  mapStateToProps,
+  { selectSong: selectSongAction }
+)(SongList);
