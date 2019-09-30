@@ -8,6 +8,7 @@ import { TodoItem } from './models/todo-item.model';
 import Tabs from './tabs/tabs';
 import SongList from './song-list/song-list';
 import SongDetail from './song-detail/song-detail';
+import PostList from './post-list/post-list';
 
 class App extends React.Component {
   constructor() {
@@ -21,6 +22,7 @@ class App extends React.Component {
     this.searchAppRef = React.createRef();
     this.todoAppRef = React.createRef();
     this.songListRef = React.createRef();
+    this.postListRef = React.createRef();
   }
 
   onSearchSubmit = term => {
@@ -48,7 +50,8 @@ class App extends React.Component {
     const _tabChildren = [
       { ref: this.searchAppRef, order: 1, name: 'Search App' },
       { ref: this.todoAppRef, order: 2, name: 'Todo App' },
-      { ref: this.songListRef, order: 3, name: 'Song List' }
+      { ref: this.songListRef, order: 3, name: 'Song List' },
+      { ref: this.postListRef, order: 4, name: 'Post List' }
     ];
 
     //Initialize tab
@@ -77,6 +80,9 @@ class App extends React.Component {
             <SongList />
             <SongDetail />
           </div>
+        </div>
+        <div className="post-list" ref={this.postListRef}>
+          <PostList />
         </div>
       </div>
     );
