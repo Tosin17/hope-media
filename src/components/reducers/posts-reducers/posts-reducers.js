@@ -1,4 +1,4 @@
-export const fetchPostsReducer = (posts = null, action) => {
+export const fetchPostsReducer = (posts = [], action) => {
   if (action.type === 'FETCH_POSTS') {
     return action.payload;
   }

@@ -1,7 +1,4 @@
-import { ajax } from 'rxjs/ajax';
-import { map } from 'rxjs/operators';
-
-const getPostsUrl = 'https://jsonplaceholder.typicode.com/posts';
+import PostsService from '../services/posts-service';
 
 export const selectSongAction = song => ({
   type: 'SONG_SELECTED',
@@ -9,8 +6,13 @@ export const selectSongAction = song => ({
 });
 
 export const fetchPosts = () => dispatch => {
-  ajax
-    .get(getPostsUrl)
-    .pipe(map(posts => posts.slice(0, 5)))
-    .subscribe(posts => dispatch({ type: 'FETCH_POSTS', payload: posts }));
+  PostsService.getPosts().subscribe(posts =>
+    dispatch({ type: 'FETCH_POSTS', payload: posts })
+  );
+};
+
+export const fetchUser = id => dispatch => {
+  PostsService.getUser(id).subscribe(user =>
+    dispatch({ type: 'FETCH_USER', payload: user })
+  );
 };
