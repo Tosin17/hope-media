@@ -10,7 +10,7 @@ class PostsService {
   getPosts() {
     return ajax
       .get(this.getPostsUrl)
-      .pipe(map(({ response: posts }) => posts.slice(0, 5)));
+      .pipe(map(({ response: posts }) => posts.slice(0, 15)));
   }
 
   getUser(id) {

@@ -8,12 +8,17 @@ class User extends React.Component {
     fetchUser(userId);
   }
   render() {
-    const name = this.props.user ? this.props.user.name : 'no name';
-    return <div>{name}</div>;
+    const { user } = this.props;
+    if (!user) {
+      return null;
+    }
+    return <div>{user.name}</div>;
   }
 }
 
-const mapStateToProps = state => ({ user: state.user });
+const mapStateToProps = (state, componentProps) => ({
+  user: state.users.find(user => user.id === componentProps.userId)
+});
 
 export default connect(
   mapStateToProps,

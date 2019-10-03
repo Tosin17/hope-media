@@ -8,5 +8,5 @@ export default combineReducers({
   songs: getSongsReducer,
   selectedSong: selectedSongReducer,
   posts: fetchPostsReducer,
-  user: userReducer
+  users: userReducer
 });
