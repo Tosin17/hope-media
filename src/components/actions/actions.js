@@ -5,14 +5,20 @@ export const selectSongAction = song => ({
   payload: song
 });
 
-export const fetchPosts = () => dispatch => {
-  PostsService.getPosts().subscribe(posts =>
-    dispatch({ type: 'FETCH_POSTS', payload: posts })
-  );
+export const fetchPosts = () => async (dispatch, getState) => {
+  const posts = await PostsService.getPosts();
+  dispatch({ type: 'FETCH_POSTS', payload: posts });
 };
 
-export const fetchUser = id => dispatch => {
-  PostsService.getUser(id).subscribe(user =>
-    dispatch({ type: 'FETCH_USER', payload: user })
-  );
+export const fetchUser = id => async dispatch => {
+  const user = await PostsService.getUser(id);
+  dispatch({ type: 'FETCH_USER', payload: user });
+};
+
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+  await dispatch(fetchPosts());
+
+  const { posts } = getState();
+  const uniqUserIds = [...new Set(posts.map(post => post.userId))];
+  uniqUserIds.forEach(id => dispatch(fetchUser(id)));
 };

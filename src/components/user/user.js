@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../actions/actions';
 
 class User extends React.Component {
-  componentDidMount() {
-    const { fetchUser, userId } = this.props;
-    fetchUser(userId);
-  }
   render() {
     const { user } = this.props;
     if (!user) {
@@ -17,7 +13,8 @@ class User extends React.Component {
 }
 
 const mapStateToProps = (state, componentProps) => ({
-  user: state.users.find(user => user.id === componentProps.userId)
+  user: state.users.find(user => user.id === componentProps.userId),
+  state
 });
 
 export default connect(

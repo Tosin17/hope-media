@@ -10,13 +10,15 @@ class PostsService {
   getPosts() {
     return ajax
       .get(this.getPostsUrl)
-      .pipe(map(({ response: posts }) => posts.slice(0, 15)));
+      .pipe(map(({ response: posts }) => posts.slice(0, 30)))
+      .toPromise();
   }
 
   getUser(id) {
     return ajax
       .get(this.getUserUrl + id)
-      .pipe(map(({ response: user }) => user));
+      .pipe(map(({ response: user }) => user))
+      .toPromise();
   }
 }
 
