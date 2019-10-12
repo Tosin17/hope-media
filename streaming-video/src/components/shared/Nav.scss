@@ -1,0 +1,14 @@
+.nav {
+  display: flex;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid gray;
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__auth-button {
+    margin-left: auto;
+  }
+}
