@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../auth/Auth';
 import './Nav.scss';
 
 const Nav = () => (
@@ -7,9 +8,7 @@ const Nav = () => (
     <Link to="/" className="nav__link">
       Streams App
     </Link>
-    <button className="nav__auth-button" type="button">
-      Log in
-    </button>
+    <Auth />
   </div>
 );
 
