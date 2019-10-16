@@ -43,7 +43,7 @@ class Auth extends React.Component {
 
   renderButton() {
     if (this.props.isSignedIn === null) {
-      return null;
+      return <div className="auth__button">Loading... </div>;
     }
 
     const loginButton = (
