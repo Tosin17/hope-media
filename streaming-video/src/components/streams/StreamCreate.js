@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { createStream } from '../../actions';
+import { connect } from 'react-redux';
 
 class StreamCreate extends React.Component {
   // `textLabel` is destructured from function params
@@ -26,7 +28,7 @@ class StreamCreate extends React.Component {
   };
 
   onFormSubmit = formValues => {
-    console.log(formValues);
+    this.props.createStream(formValues);
   };
 
   render() {
@@ -65,7 +67,12 @@ const validateFunc = ({ title, description }) => {
   return errors;
 };
 
-export default reduxForm({
+const form = reduxForm({
   form: 'CreateStreamForm',
   validate: validateFunc
 })(StreamCreate);
+
+export default connect(
+  null,
+  { createStream }
+)(form);
