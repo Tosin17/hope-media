@@ -1,9 +1,9 @@
-import { CREATE_STREAM } from '../../actions/types';
+import { FETCH_STREAMS } from '../../actions/types';
 
-export const createStreamReducer = (streams = [], action) => {
+export const streamsReducer = (streams = {}, action) => {
   switch (action.type) {
-    case CREATE_STREAM:
-      return [...streams, action.payload];
+    case FETCH_STREAMS:
+      return { ...action.payload };
     default:
       return streams;
   }
