@@ -8,6 +8,18 @@ class StreamList extends React.Component {
     this.props.fetchStreams();
   }
 
+  renderEditDeleteButtons = () => {
+    if (!this.props.isSignedIn) {
+      return null;
+    }
+    return (
+      <div>
+        <button type="button">Edit Stream</button>{' '}
+        <button type="button">Delete Stream</button>
+      </div>
+    );
+  };
+
   renderStreamsList() {
     if (!this.props.streams.length) {
       return (
@@ -26,21 +38,38 @@ class StreamList extends React.Component {
       return (
         <li key={id}>
           {title} <br />
-          {description}
+          {description} <br />
+          {this.renderEditDeleteButtons()}
+          <hr />
         </li>
       );
     });
-
     return list;
   }
 
+  renderCreateButton() {
+    if (this.props.isSignedIn) {
+      return (
+        <div>
+          <Link to="/streams/create">Create Stream</Link> <br />
+        </div>
+      );
+    }
+  }
+
   render() {
-    return <ul>{this.renderStreamsList()}</ul>;
+    return (
+      <div>
+        {this.renderCreateButton()}
+        <ul>{this.renderStreamsList()}</ul>
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  streams: Object.values(state.streams)
+  streams: Object.values(state.streams),
+  isSignedIn: state.auth.isSignedIn
 });
 export default connect(
   mapStateToProps,
