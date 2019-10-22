@@ -7,6 +7,7 @@ import {
   EDIT_STREAM
 } from './types';
 import streamService from '../services/streams-services';
+import history from '../history';
 
 export const signIn = userId => ({
   type: SIGN_IN,
@@ -18,8 +19,12 @@ export const signOut = () => ({
 });
 
 export const createStream = streamDetails => async dispatch => {
-  const response = await streamService.postStream(streamDetails);
-  dispatch({ type: CREATE_STREAM, payload: response.data });
+  try {
+    const response = await streamService.postStream(streamDetails);
+    dispatch({ type: CREATE_STREAM, payload: response.data });
+    // Re-route to home page on success
+    history.push('/');
+  } catch (err) {}
 };
 
 export const fetchStreams = () => async dispatch => {

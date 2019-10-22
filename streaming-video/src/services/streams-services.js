@@ -24,7 +24,7 @@ class StreamsService {
     return this._axios.delete(`${this._URL}/${id}`);
   }
 
-  updateStreams(id, update) {
+  updateStream(id, update) {
     return this._axios.put(`${this._URL}/${id}`, update);
   }
 }
