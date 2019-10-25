@@ -2,6 +2,7 @@ import {
   SIGN_IN,
   SIGN_OUT,
   CREATE_STREAM,
+  FETCH_STREAM,
   FETCH_STREAMS,
   DELETE_STREAM,
   EDIT_STREAM
@@ -25,6 +26,11 @@ export const createStream = streamDetails => async dispatch => {
     // Re-route to home page on success
     history.push('/');
   } catch (err) {}
+};
+
+export const fetchStream = id => async dispatch => {
+  const response = await streamService.fetchStream(id);
+  dispatch({ type: FETCH_STREAM, payload: response.data });
 };
 
 export const fetchStreams = () => async dispatch => {

@@ -1,6 +1,7 @@
 import { omit } from 'lodash';
 import {
   FETCH_STREAMS,
+  FETCH_STREAM,
   CREATE_STREAM,
   EDIT_STREAM,
   DELETE_STREAM
@@ -10,6 +11,8 @@ export const streamsReducer = (streams = {}, action) => {
   switch (action.type) {
     case FETCH_STREAMS:
       return { ...action.payload };
+    case FETCH_STREAM:
+      return { ...streams, [action.payload.id]: action.payload };
     case CREATE_STREAM:
       return { ...streams, [action.payload.id]: action.payload };
     case EDIT_STREAM:

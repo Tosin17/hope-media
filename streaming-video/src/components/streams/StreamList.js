@@ -8,14 +8,14 @@ class StreamList extends React.Component {
     this.props.fetchStreams();
   }
 
-  renderEditDeleteButtons = () => {
+  renderEditDeleteButtons = id => {
     if (!this.props.isSignedIn) {
       return null;
     }
     return (
       <div>
-        <button type="button">Edit Stream</button>{' '}
-        <button type="button">Delete Stream</button>
+        <Link to={`/streams/edit/${id}`}>Edit Stream</Link>{' '}
+        <Link to="/streams/delete">Delete Stream</Link>
       </div>
     );
   };
@@ -39,7 +39,7 @@ class StreamList extends React.Component {
         <li key={id}>
           {title} <br />
           {description} <br />
-          {this.renderEditDeleteButtons()}
+          {this.renderEditDeleteButtons(id)}
           <hr />
         </li>
       );

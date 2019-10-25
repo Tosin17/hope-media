@@ -8,6 +8,10 @@ class StreamsService {
     return this._axios.post(this._URL, streamDetails);
   }
 
+  fetchStream(id) {
+    return this._axios.get(`${this._URL}/${id}`);
+  }
+
   fetchStreams() {
     return this._axios.get(this._URL).then(({ data }) => {
       // NOTE: You can use lodash's mapKeys to do this
@@ -25,7 +29,7 @@ class StreamsService {
   }
 
   updateStream(id, update) {
-    return this._axios.put(`${this._URL}/${id}`, update);
+    return this._axios.patch(`${this._URL}/${id}`, update);
   }
 }
 
