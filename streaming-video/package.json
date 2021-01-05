@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "google-sign-in": "^3.0.3",
     "googleapis": "^44.0.0",
     "lodash": "^4.17.15",
